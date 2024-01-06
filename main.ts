@@ -5,28 +5,33 @@
  * This program 
 */
 
-let distansetoObject: number = 0
+// variables
+let distanceToObject: number = 0
 
-radio.setGroup(8)
-basic.showIcon(IconNames.Happy)
+// setup {with Ihor in group 7}
+radio.setGroup(7)
+basic.showIcon(IconNames.Duck)
 
+// on A button presed run code
 input.onButtonPressed(Button.A, function () {
-  while (true) {
-  distansetoObject = sonar.ping(
-    DigitalPin.P1,
-    DigitalPin.P2,
-    PingUnit.Centimeters
+  distanceToObject = sonar.ping(
+  DigitalPin.P1,
+  DigitalPin.P2,
+  PingUnit.Centimeters
   )
-      if distansetoObject =< 10
-  }
-})
 
+// if less or equal to 10cm away from the object
+  if (distanceToObject <= 10) {
+  radio.sendString('too close')
+} else {
+  radio.sendString('test')
+}
+}
+)
+
+//receiving
 radio.onReceivedString(function (receivedString) {
   basic.clearScreen()
   basic.showString(receivedString)
-  basic.showIcon(IconNames.Happy)
+  basic.showIcon(IconNames.Surprised)
 })
-
-basic.showIcon(IconNames.Triangle)
-radio.sendString("Test")
-basic.showIcon(IconNames.Happy)
