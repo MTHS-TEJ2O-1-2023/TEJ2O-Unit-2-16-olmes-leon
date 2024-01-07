@@ -2,7 +2,7 @@
  *
  * Created by: Olmes
  * Created on: Dec 2023
- * This program 
+ * This program
 */
 
 // variables
@@ -15,21 +15,21 @@ basic.showIcon(IconNames.Duck)
 // on A button presed run code
 input.onButtonPressed(Button.A, function () {
   distanceToObject = sonar.ping(
-  DigitalPin.P1,
-  DigitalPin.P2,
-  PingUnit.Centimeters
+    DigitalPin.P1,
+    DigitalPin.P2,
+    PingUnit.Centimeters
   )
 
-// if less or equal to 10cm away from the object
+  // if less or equal to 10cm away from the object
   if (distanceToObject <= 10) {
-  radio.sendString('too close')
-} else {
-  radio.sendString('test')
-}
+    radio.sendString('too close')
+  } else {
+    radio.sendString('test')
+  }
 }
 )
 
-//receiving
+// receiving
 radio.onReceivedString(function (receivedString) {
   basic.clearScreen()
   basic.showString(receivedString)
